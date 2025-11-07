@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
@@ -17,39 +16,16 @@ function AppContent() {
   return (
     <div
       style={{
-        backgroundColor: darkMode ? "#121212" : "#fafafa",
-        color: darkMode ? "#e8eaed" : "#202124",
-        fontFamily: "'Roboto', sans-serif",
+        backgroundColor: darkMode ? "#202124" : "#fafafa",
         minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        transition: "background 0.4s ease, color 0.4s ease",
+        color: darkMode ? "#e8eaed" : "#202124",
+        fontFamily: "Inter, sans-serif",
+        transition: "background 0.3s ease, color 0.3s ease",
       }}
     >
       <Header />
-
-      <main
-        style={{
-          flex: 1,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "30px 15px",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "900px",
-            padding: "35px",
-            borderRadius: "18px",
-            backgroundColor: darkMode ? "#1e1f21" : "#ffffff",
-            boxShadow: darkMode
-              ? "0 4px 16px rgba(255,255,255,0.05)"
-              : "0 4px 16px rgba(0,0,0,0.1)",
-            transition: "background 0.3s ease, box-shadow 0.3s ease",
-          }}
-        >
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "calc(100vh - 70px)", padding: "20px" }}>
+        <div style={{ width: "100%", maxWidth: "900px", padding: "30px", borderRadius: "12px", backgroundColor: darkMode ? "#303134" : "#ffffff", boxShadow: darkMode ? "0 2px 10px rgba(0,0,0,0.6)" : "0 2px 10px rgba(0,0,0,0.1)" }}>
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
@@ -58,9 +34,7 @@ function AppContent() {
             <Route path="/perfil" element={isLoggedIn() ? <Perfil /> : <Navigate to="/" />} />
           </Routes>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }
